@@ -1,17 +1,20 @@
 <?php
-$host = 'shuttle.proxy.rlwy.net';
-$db   = 'railway';
-$user = 'root';
-$pass = 'VMHDyWnMEPARaYInrkpEPtiwLholifke';
-$port = 19644;
+$hostname = "shuttle.proxy.rlwy.net";
+$username = "root";
+$password = "VMHDyWnMEPARaYInrkpEPtiwLholifke";
+$dbname   = "db_bukawarung";
+$port     = 19644;
 
-try {
-    $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4";
-    $pdo = new PDO($dsn, $user, $pass);
-    // Set error mode to exception
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    // Siap dipakai
-} catch (PDOException $e) {
-    die("Koneksi gagal: " . $e->getMessage());
+// Membuat koneksi mysqli dengan port khusus
+$conn = mysqli_connect($hostname, $username, $password, $dbname, $port);
+
+// Cek koneksi
+if (!$conn) {
+    die("Gagal memuat ke database: " . mysqli_connect_error());
 }
+
+// Set charset agar aman untuk UTF-8
+mysqli_set_charset($conn, "utf8mb4");
+
+// Sekarang koneksi $conn siap digunakan
 ?>

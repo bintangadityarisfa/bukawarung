@@ -1,20 +1,17 @@
 <?php
-// $hostname = "localhost";
-// $username = "root";
-// $password = "";
-// $dbname = "db_bukawarung";
+$host = 'shuttle.proxy.rlwy.net';
+$db   = 'railway';
+$user = 'root';
+$pass = 'VMHDyWnMEPARaYInrkpEPtiwLholifke';
+$port = 19644;
 
-// $conn = mysqli_connect($hostname,$username,$password,$dbname) or die ("Gagal memuat ke database");
-
-$hostname = "shuttle.proxy.rlwy.net";
-$username = "root";
-$password = "VMHDyWnMEPARaYInrkpEPtiwLholifke";
-$dbname   = "db_bukawarung";
-$port     = 19644; // port dari connection string
-
-// Buat koneksi (perhatikan parameter port di akhir)
-$conn = mysqli_connect($hostname, $username, $password, $dbname, $port);
-
-
+try {
+    $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4";
+    $pdo = new PDO($dsn, $user, $pass);
+    // Set error mode to exception
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // Siap dipakai
+} catch (PDOException $e) {
+    die("Koneksi gagal: " . $e->getMessage());
+}
 ?>
-

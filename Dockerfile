@@ -4,8 +4,8 @@ RUN apt-get update && apt-get install -y default-mysql-client \
     && docker-php-ext-install mysqli \
     && docker-php-ext-enable mysqli
 
-# Tidak perlu set WORKDIR karena kamu ingin pakai root /
-COPY ./src /      # Copy isi src ke root container /
+# Copy semua file di root project ke root container /
+COPY . /     
 
 EXPOSE 8080
 
